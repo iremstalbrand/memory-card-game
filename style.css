@@ -137,40 +137,24 @@ textarea:not([rows]) {
   top: 0;
   left: 0;
   backface-visibility: hidden;  
-  transition: transform 1.5s;
-}
-.front {
-  transform: rotateY(180deg); /* invisible at the beginning */
-}
-.card.flipped .front {
-  transform: rotateY(0deg);   /* visible when card is open */
-}
-.card.flipped .back {
-  transform: rotateY(180deg); 
+  transition: transform 0.5s;
 }
 
-.card.matched {
-  animation: matchEffect 1s ease forwards;
-  animation-delay: 1s;/
+.card .front {
+  transform: rotateY(180deg);
 }
 
-@keyframes matchEffect {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  40% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(0);
-    opacity: 0;
-  }
+.card .back {
+  transform: rotateY(0deg);
 }
 
+.card.flip .front {
+  transform: rotateY(0deg);
+}
+
+.card.flip .back {
+  transform: rotateY(180deg);
+}
 
  /* ------------------------------ CREDITS ------------------------------ */
 #footer {

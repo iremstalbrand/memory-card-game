@@ -39,13 +39,7 @@ cards.forEach((cardData) => {
 
 const cardsElements = document.querySelectorAll(".card");
 
-// firstCard and secondCard holds the cards that user clicked
-let firstCard = null; //user clicked first card, empty in the beginning
-let secondCard = null; //user clicked second card, empty in the beginning
-
-cardsElements.forEach((card) => {
-  card.addEventListener("click", () => {
-    card.classList.add("flipped"); //when card flips, adds "flipped" class
-  });
-});
-console.log(images);
+function flipCard() {
+  this.classList.toggle("flip");
+}
+cardsElements.forEach((card) => card.addEventListener("click", flipCard));
