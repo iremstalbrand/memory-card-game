@@ -40,7 +40,7 @@ cards.forEach((cardData) => {
 const cardsElements = document.querySelectorAll(".card");
 
 let hasFlippedCard = false;
-let firstCard, secondCARD;
+let firstCard, secondCard;
 
 function flipCard() {
   this.classList.add("flip");
@@ -52,6 +52,11 @@ function flipCard() {
 
     //console.log(hasFlippedCard);
     //console.log(firstCard);
+  } else {
+    //second click
+    hasFlippedCard = false;
+    secondCard = this;
   }
+  //console.log(secondCard);
 }
 cardsElements.forEach((card) => card.addEventListener("click", flipCard));
