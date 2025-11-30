@@ -4,7 +4,7 @@ const images = []; // Creating the list of card data objects
 for (let i = 1; i <= 10; i++) {
   images.push({
     src: `images/card${i}.png`, //property
-    flipped: false, //property
+    //flipped: false, //property
   });
 }
 
@@ -39,7 +39,24 @@ cards.forEach((cardData) => {
 
 const cardsElements = document.querySelectorAll(".card");
 
+let hasFlippedCard = false;
+let firstCard, secondCard;
+
 function flipCard() {
-  this.classList.toggle("flip");
+  this.classList.add("flip");
+
+  //first click
+  if (!hasFlippedCard) {
+    hasFlippedCard = true;
+    firstCard = this;
+
+    //console.log(hasFlippedCard);
+    //console.log(firstCard);
+  } else {
+    //second click
+    hasFlippedCard = false;
+    secondCard = this;
+  }
+  //console.log(secondCard);
 }
 cardsElements.forEach((card) => card.addEventListener("click", flipCard));
