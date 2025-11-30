@@ -155,7 +155,12 @@ textarea:not([rows]) {
 .card.flip .back {
   transform: rotateY(180deg);
 }
-
+.matched {
+  transform: scale(0); 
+  opacity: 0;          
+  pointer-events: none; 
+  transition: transform 2s ease, opacity 0.5s ease;
+}
  /* ------------------------------ CREDITS ------------------------------ */
 #footer {
   display: flex;
