@@ -4,7 +4,7 @@ const images = []; // Creating the list of card data objects
 for (let i = 1; i <= 10; i++) {
   images.push({
     src: `images/card${i}.png`, //property
-    //flipped: false, //property
+    flipped: false, //property
   });
 }
 
@@ -35,28 +35,64 @@ cards.forEach((cardData) => {
   board.appendChild(card); //adding cards to the board
 });
 
-//------------CARD MATCHING LOGIC------------//
+//------------CARD FLIPPING LOGIC------------//
 
 const cardsElements = document.querySelectorAll(".card");
 
 let hasFlippedCard = false;
 let firstCard, secondCard;
+let lockBoard = false;
 
 function flipCard() {
+  if (lockBoard) return;
+  if (this.cardData.flipped) return;
+  if (this === firstCard) return;
   this.classList.add("flip");
 
   //first click
   if (!hasFlippedCard) {
     hasFlippedCard = true;
     firstCard = this;
+    return;
 
     //console.log(hasFlippedCard);
     //console.log(firstCard);
-  } else {
-    //second click
-    hasFlippedCard = false;
-    secondCard = this;
   }
-  //console.log(secondCard);
+  //second click
+  secondCard = this;
+
+  checkForMatch();
+}
+//------------CARD FLIPPING LOGIC------------//
+
+//------------CARD MATCHING LOGIC------------//
+function checkForMatch() {
+  const isMatch = firstCard.cardData.src === secondCard.cardData.src;
+
+  if (isMatch) {
+    lockBoard = true;
+
+    setTimeout(() => {
+      firstCard.classList.add("matched");
+      secondCard.classList.add("matched");
+      firstCard.cardData.flipped = true;
+      secondCard.cardData.flipped = true;
+
+      resetBoard();
+    }, 500);
+  } else {
+    lockBoard = true;
+    setTimeout(() => {
+      firstCard.classList.remove("flip");
+      secondCard.classList.remove("flip");
+      resetBoard();
+    }, 1000);
+  }
+}
+function resetBoard() {
+  [hasFlippedCard, lockBoard] = [false, false]; //board is not locked
+  [firstCard, secondCard] = [null, null];
 }
 cardsElements.forEach((card) => card.addEventListener("click", flipCard));
+
+//------------CARD FLIPPING LOGIC------------//
