@@ -1,17 +1,18 @@
 //------------CREATING THE CARDS------------//
 
-const images = []; // Creating the list of card data objects
+// Creating the list of card data objects
+const images = [];
 for (let i = 1; i <= 10; i++) {
   images.push({
-    src: `images/card${i}.png`, //property
-    flipped: false, //property
+    src: `images/card${i}.png`,
+    flipped: false,
   });
 }
 
 //------------DOM REGION FOR BOARD AND IMAGES------------//
 
 const cards = [...images, ...images].map((card) => ({ ...card })); // "..." spread operator, adds images array twice to create copies
-const board = document.getElementById("game-board"); //targeting the game-board container
+const board = document.getElementById("game-board");
 
 //cardData is my object. cardData.src is the string inside of my object.
 cards.forEach((cardData) => {
