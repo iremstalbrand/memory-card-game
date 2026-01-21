@@ -12,6 +12,16 @@ for (let i = 1; i <= 10; i++) {
 //------------DOM REGION FOR BOARD AND IMAGES------------//
 
 const cards = [...images, ...images].map((card) => ({ ...card })); // "..." spread operator, adds images array twice to create copies
+
+//shuffle cards
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+shuffle(cards);
+
 const board = document.getElementById("game-board");
 
 //cardData is my object. cardData.src is the string inside of my object.
