@@ -106,4 +106,17 @@ function resetBoard() {
 }
 cardsElements.forEach((card) => card.addEventListener("click", flipCard));
 
-//------------CARD FLIPPING LOGIC------------//
+//------------GAME RESET LOGIC------------//
+function resetGame() {
+  [hasFlippedCard, lockBoard] = [false, false];
+  [firstCard, secondCard] = [null, null];
+
+  cardsElements.forEach((card) => {
+    card.classList.remove("flip");
+    card.classList.remove("matched");
+    card.cardData.flipped = false;
+  });
+}
+
+const resetButton = document.getElementById("reset-button");
+resetButton.addEventListener("click", resetGame);
